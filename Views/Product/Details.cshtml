@@ -1,0 +1,25 @@
+@model WebApplication6.Models.Product
+@{
+    ViewBag.Title = "Details";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h2>Details</h2>
+    <h2>Product Details</h2>
+
+    <p>@Html.DisplayNameFor(m => m.ProductId): @Model.ProductId</p>
+    <p>@Html.DisplayNameFor(m => m.ProductName): @Model.ProductName</p>
+    <p>Product Description: @Model.Description</p>
+    <p>Price: @Model.Price.ToString("N0")</p>
+    <p>Category: @Model.Category</p>
+    <p>@Html.DisplayNameFor(m => m.InStock): @(Model.InStock ? "Yes" : "No")</p>
+
+    <p>@Html.ActionLink("Back to Product Catalog", "Index")</p>
+</body>
+</html>

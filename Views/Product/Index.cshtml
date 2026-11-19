@@ -1,0 +1,54 @@
+@model IEnumerable<WebApplication6.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    var categories = (List<string>)ViewBag.Categories;
+    var selected = (string)ViewBag.SelectedCategory;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h2>Index</h2>
+    <h2>Product Catalog</h2>
+
+    <form method="get" action="@Url.Action("Index", "Product")">
+        <label for="category">Category:</label>
+        <select name="category" id="category" onchange="this.form.submit()">
+            <option value="">All</option>
+            @foreach (var c in categories)
+            {
+                <option value="@c" @(c == selected ? "selected" : "")>@c</option>
+            }
+        </select>
+    </form>
+    <br />
+
+    <table border="1">
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.ProductId)</th>
+            <th>@Html.DisplayNameFor(m => m.ProductName)</th>
+            <th>@Html.DisplayNameFor(m => m.Description)</th>
+            <th>@Html.DisplayNameFor(m => m.Price)</th>
+            <th>@Html.DisplayNameFor(m => m.Category)</th>
+            <th>@Html.DisplayNameFor(m => m.InStock)</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Description</td>
+                <td>@item.Price.ToString("N0")</td>
+                <td>@item.Category</td>
+                <td>@(item.InStock ? "Yes" : "No")</td>
+                <td>@Html.ActionLink("View Details", "Details", new { id = item.ProductId })</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
