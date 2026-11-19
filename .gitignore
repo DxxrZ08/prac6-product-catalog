@@ -1,0 +1,8 @@
+# Visual Studio and build output
+.vs/
+bin/
+obj/
+*.user
+
+# NuGet packages restored locally
+packages/
